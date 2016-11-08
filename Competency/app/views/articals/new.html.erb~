@@ -1,0 +1,39 @@
+<h2>Create New Article</h2>
+
+<%#= render :text=>  “articals/form" %>
+
+
+
+<%= simple_form_for @artical do |f| %>
+  <% if @artical.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= "#{pluralize(@artical.errors.count, "error")} prohibited this article from being saved:" %>
+      </h2>
+      <ul>
+        <% @artical.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.input :title, class: "form-control" %>
+  </div>
+ 
+  <div class="form-group">
+    <%= f.input :category, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.input :content, :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}}, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
